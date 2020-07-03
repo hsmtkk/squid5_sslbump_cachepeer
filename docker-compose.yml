@@ -7,6 +7,7 @@ services:
   childproxy:
     image: hsmtkk/squid_docker:squid-5.0.3
     container_name: childproxy
+    privileged: true
     volumes:
       - ./childproxy/entrypoint.sh:/entrypoint.sh:ro
       - ./childproxy/squid.conf:/usr/local/squid/etc/squid.conf:ro
@@ -14,6 +15,7 @@ services:
   parentproxy:
     image: hsmtkk/squid_docker:squid-5.0.3
     container_name: parentproxy
+    privileged: true
     volumes:
       - ./parentproxy/entrypoint.sh:/entrypoint.sh:ro
       - ./parentproxy/squid.conf:/usr/local/squid/etc/squid.conf:ro

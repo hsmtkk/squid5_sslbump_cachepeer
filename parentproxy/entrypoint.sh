@@ -1,4 +1,7 @@
 #!/bin/sh
+ulimit -c unlimited
+echo '/tmp/core.%h.%e.%t' > /proc/sys/kernel/core_pattern
+
 squid=/usr/local/squid
 
 touch ${squid}/var/logs/access.log ${squid}/var/logs/cache.log
