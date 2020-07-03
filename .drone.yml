@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: lint
+    image: sdesbure/yamllint
+    commands:
+      - yamllint -d relaxed docker-compose.yml
