@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  client:
+    image: curlimages/curl:7.71.0
+    entrypoint: ["tail", "-f", "/dev/null"]
+  childproxy:
+    image: hsmtkk/squid_docker:squid-5.0.3
+    volumes:
+      - ./childproxy/entrypoint.sh:/entrypoint.sh:ro
+      - ./childproxy/squid.conf:/usr/local/squid/etc/squid.conf:ro
+      - ./childproxy/myCA.pem:/usr/local/squid/etc/myCA.pem:ro
+  parentproxy:
+    image: hsmtkk/squid_docker:squid-5.0.3
+    volumes:
+      - ./parentproxy/entrypoint.sh:/entrypoint.sh:ro
+      - ./parentproxy/squid.conf:/usr/local/squid/etc/squid.conf:ro
+      - ./parentproxy/myCA.pem:/usr/local/squid/etc/myCA.pem:ro
+  server:
+    image: nginx:1.19.0
+
