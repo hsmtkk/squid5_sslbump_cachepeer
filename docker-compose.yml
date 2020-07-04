@@ -5,7 +5,7 @@ services:
     container_name: client
     entrypoint: ["tail", "-f", "/dev/null"]
   childproxy:
-    image: hsmtkk/squid_docker:squid-5.0.3
+    image: hsmtkk/squid_docker:squid-latest
     container_name: childproxy
     privileged: true
     volumes:
@@ -13,7 +13,7 @@ services:
       - ./childproxy/squid.conf:/usr/local/squid/etc/squid.conf:ro
       - ./childproxy/myCA.pem:/usr/local/squid/etc/myCA.pem:ro
   parentproxy:
-    image: hsmtkk/squid_docker:squid-5.0.3
+    image: hsmtkk/squid_docker:squid-latest
     container_name: parentproxy
     privileged: true
     volumes:
